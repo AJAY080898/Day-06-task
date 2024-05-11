@@ -1,0 +1,68 @@
+3.Write a “person” class to hold all the details?
+
+class Person {
+    constructor(name, age, gender, address, email = null, phone = null, occupation = null, maritalStatus = null) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.address = address;
+        this.email = email;
+        this.phone = phone;
+        this.occupation = occupation;
+        this.maritalStatus = maritalStatus;
+    }
+
+    toString() {
+        let details = `Name: ${this.name}, Age: ${this.age}, Gender: ${this.gender}, Address: ${this.address}`;
+        if (this.email) {
+            details += `, Email: ${this.email}`;
+        }
+        if (this.phone) {
+            details += `, Phone: ${this.phone}`;
+        }
+        if (this.occupation) {
+            details += `, Occupation: ${this.occupation}`;
+        }
+        if (this.maritalStatus) {
+            details += `, Marital Status: ${this.maritalStatus}`;
+        }
+        return details;
+    }
+
+    updateContactInfo(email = null, phone = null) {
+        if (email) {
+            this.email = email;
+        }
+        if (phone) {
+            this.phone = phone;
+        }
+    }
+}
+let person1 = new Person("AJAY", 26, "Male", "NO 19 , MKM", "Ajay@gmail.com", "8808089811", "Engineer", "unMarried");
+console.log(person1.toString());
+
+// Update contact info
+person1.updateContactInfo("john@gmail.com");
+console.log(person1.toString());
+
+4.write a class to calculate the Uber price.?
+
+class UberPriceCalculator {
+    constructor(baseFare, costPerMile, bookingFee = 0, surgeMultiplier = 1) {
+        this.baseFare = baseFare;
+        this.costPerMile = costPerMile;
+        this.bookingFee = bookingFee;
+        this.surgeMultiplier = surgeMultiplier;
+    }
+
+    calculatePrice(distance) {
+        let totalCost = this.baseFare + this.bookingFee;
+        totalCost += this.costPerMile * distance * this.surgeMultiplier;
+        return totalCost;
+    }
+}
+
+const calculator = new UberPriceCalculator(10, 5, 15, 2);
+const distance = 20; // in miles
+const price = calculator.calculatePrice(distance);
+console.log(`The estimated Uber price for a ${distance}-mile trip is $${price.toFixed(2)}`);
